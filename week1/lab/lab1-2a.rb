@@ -80,16 +80,3 @@ puts square_total(more_numbers)
 # 
 puts "\nMilestone C: Representing TODO tasks"
 puts "-". * 75
-
-my_tasks = [
-  {task: "Read instructions", done: true},
-  {task: "Read instructions again", done: true},
-  {task: "Follow direction", done: true},
-  {task: "Open Editor", done: true},
-  {task: "Set up other dependencies", done: true},
-  {task: "Google", done: true},
-  {task: "Look at references", done: true},
-  {task: "Apply Concepts", done: true},
-  {task: "Write Code", done: true},
-  {task: "Do Homework", done: false}  
-]
