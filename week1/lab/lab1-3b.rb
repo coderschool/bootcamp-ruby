@@ -81,27 +81,17 @@ puts "Same price, but I'm prettier. == " + @my_flower.compare(Flower.new("green 
 class Bouquet
   def initialize(flowers = [])
     # your code here
-    @flowers = flowers
   end
   
   def add(flower)
     # your code here
     # HINT: this updates your instance variable
     
-    puts "Great. Added #{flower.name} to the bouquet."
-    @flowers << flower
+    # puts "Great. Added #{flower.name} to the bouquet."
   end
   
   def flowers
+    # your code here
     # HINT: this is a reader; return the instance variable
-    @flowers
-  end
-
-  def total_price
-    sum = 0
-    @flowers.each do |flower|
-      sum = sum + flower.price
-    end
-    sum
   end
 end
