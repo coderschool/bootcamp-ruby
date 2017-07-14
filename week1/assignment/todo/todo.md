@@ -3,3 +3,5 @@
 - [x] Learn Variables
 - [x] Learn Hash
 - [ ] Learn Methods
+- [ ] Learn Class
+- [x] Learn File Reading
