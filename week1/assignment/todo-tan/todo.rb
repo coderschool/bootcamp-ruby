@@ -36,6 +36,7 @@ class Todo
 
   def add(name)
     @list.add(Item.new(name))
+    save
   end
 
   def start
@@ -66,10 +67,31 @@ class Todo
       add(request[1..-1].strip)
     when request[0..5] == 'remove'
       @list.remove_at(request[6..-1].to_i - 1)
+    when request[0..3] == "save"
+      if request.length == 4
+        save
+      else
+        save(request[4..-1].strip)
+      end
     end
   end
 end
 
 @todo = Todo.new
 @todo.load_data
-@todo.start
+
+if ARGV.empty?
+  puts "Command list: "
+  puts "all - show all todo items"
+  puts "done - show all done items"
+  puts "add \"Love command line\" - add a new command line item"
+else
+  case ARGV[0]
+  when 'all'
+    @todo.show_all
+  when 'done'
+    @todo.show_done
+  when 'add'
+    @todo.add(ARGV[1]) unless ARGV[1].nil?
+  end
+end
