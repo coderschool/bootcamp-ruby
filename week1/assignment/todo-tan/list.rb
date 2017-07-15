@@ -46,8 +46,8 @@ class List
 
   def display
     puts "Displaying #{@name}'s items:"
-    @items.each do |item|
-       puts item.display
+    @items.each_with_index do |item, index|
+       puts "#{index + 1}. #{item.display}"
     end 
   end
 

@@ -80,13 +80,20 @@ end
 @todo = Todo.new
 @todo.load_data
 
+aliases = {
+  "a"  => "all",
+  "d"  => "done",
+  "+"  => "add"
+}
+
 if ARGV.empty?
   puts "Command list: "
   puts "all - show all todo items"
   puts "done - show all done items"
   puts "add \"Love command line\" - add a new command line item"
 else
-  case ARGV[0]
+  command = aliases[ARGV[0]] || ARGV[0]
+  case command
   when 'all'
     @todo.show_all
   when 'done'
