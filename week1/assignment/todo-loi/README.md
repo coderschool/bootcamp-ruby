@@ -2,5 +2,4 @@
 
 Loi's Todo app =).
 ### Gif walkthrough:
-[Gif walkthrough:](./todo-app.gif)
 ![](./todo-app.gif)
