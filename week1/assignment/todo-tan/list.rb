@@ -39,7 +39,7 @@ class List
     puts "Displaying UNDONE items:"
     @items.each do |item|
       unless item.done?
-        item.display
+        puts item.display
       end
     end 
   end
@@ -47,8 +47,12 @@ class List
   def display
     puts "Displaying #{@name}'s items:"
     @items.each do |item|
-        item.display
+       puts item.display
     end 
+  end
+
+  def to_string
+    @items.map{|item| item.display}.join("\n")
   end
 end
 

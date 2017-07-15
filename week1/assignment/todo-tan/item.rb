@@ -15,7 +15,7 @@ class Item
   end
   
   def display
-    puts "- [#{ done? ? 'x' : ' ' }] #{ @name }"
+    "- [#{ done? ? 'x' : ' ' }] #{ @name }"
   end
   
   # HINT: this method is written for you, but you can understand it

@@ -18,6 +18,10 @@ class Todo
     end
   end
 
+  def save(filename = "todo.md")
+    File.write(filename, @list.to_string)
+  end
+
   def show_all
     @list.display
   end
@@ -34,16 +38,20 @@ class Todo
     @list.add(Item.new(name))
   end
 
-  def prompt
-    loop do
-      puts "Hi grandma! what do you want me to do?"
-      user_input = gets.chomp
-      if user_input == 'exit'
+  def start
+    loop do       
+      if prompt == 'exit'
         puts "Goodbye!"
         break
       end
-      handle_user_request(user_input)
     end
+  end
+
+  def prompt
+      puts "Hi grandma! what do you want me to do?"
+      user_input = gets.chomp
+      handle_user_request(user_input)
+      user_input
   end
 
   def handle_user_request(request)
@@ -64,4 +72,4 @@ end
 
 @todo = Todo.new
 @todo.load_data
-@todo.prompt
+@todo.start
