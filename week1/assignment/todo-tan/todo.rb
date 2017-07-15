@@ -21,4 +21,47 @@ class Todo
   def show_all
     @list.display
   end
+
+  def show_undone
+    @list.display_undone
+  end
+
+  def show_done
+    @list.display_done
+  end
+
+  def add(name)
+    @list.add(Item.new(name))
+  end
+
+  def prompt
+    loop do
+      puts "Hi grandma! what do you want me to do?"
+      user_input = gets.chomp
+      if user_input == 'exit'
+        puts "Goodbye!"
+        break
+      end
+      handle_user_request(user_input)
+    end
+  end
+
+  def handle_user_request(request)
+    case 
+    when request == 'all'
+      show_all
+    when request == 'undone'
+      show_undone
+    when request == 'done'
+      show_done
+    when request[0] == '+'
+      add(request[1..-1].strip)
+    when request[0..5] == 'remove'
+      @list.remove_at(request[6..-1].to_i - 1)
+    end
+  end
 end
+
+@todo = Todo.new
+@todo.load_data
+@todo.prompt

@@ -13,6 +13,19 @@ class List
     @items << item
   end
 
+  def remove_at(index)
+    @items.delete_at(index)
+  end
+
+  def done
+    @items.select { |item| item.done? }
+  end
+
+  def undone
+    @items.select { |item| !item.done? }
+  end
+
+
   def display_done
     puts "Displaying DONE items:"
     @items.each do |item|
