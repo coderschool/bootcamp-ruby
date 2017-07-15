@@ -1,9 +1,11 @@
 require_relative "item"
 
-class List 
+class List
+  attr_accessor :name
   attr_accessor :items
 
-  def initialize(items = [])
+  def initialize(name, items = [])
+    @name = name
     @items = items
   end
 
@@ -22,6 +24,18 @@ class List
 
   def display_undone
     puts "Displaying UNDONE items:"
+    @items.each do |item|
+      unless item.done?
+        item.display
+      end
+    end 
+  end
+
+  def display
+    puts "Displaying #{@name}'s items:"
+    @items.each do |item|
+        item.display
+    end 
   end
 end
 
@@ -32,5 +46,5 @@ end
 @item5 = Item.new("Learn Class")
 @item6 = Item.new("Pay tuition", true)
 
-@today = List.new([@item1, @item2, @item3, @item4, @item5])
+@today = List.new("Today's list", [@item1, @item2, @item3, @item4, @item5])
 @today.add(@item6)

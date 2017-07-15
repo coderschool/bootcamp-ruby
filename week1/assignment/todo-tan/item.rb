@@ -1,4 +1,6 @@
 class Item
+  attr_accessor :name
+
   def initialize(name, done = false)
     @name = name
     @done = done
@@ -23,3 +25,4 @@ class Item
     Item.new(name, done)
   end
 end
+
