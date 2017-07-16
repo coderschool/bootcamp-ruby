@@ -15,12 +15,12 @@ class Todo
     @lines = File.read("todo.md").split("\n")
     @lines.each do |line|
       # "- [ ] Learn Numbers"
-      @list.add(Item.new(line[6..-1], line[3] == "x"))
+      @list.add(Item.new_from_line(line))
     end
   end
 
   def display
-    puts "TODAY:"
+    puts "Display Todo items:"
     @list.display
   end
 

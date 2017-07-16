@@ -1,5 +1,3 @@
-require_relative "item"
-
 class List 
   attr_accessor :items, :name
 
@@ -12,12 +10,20 @@ class List
     @items << item
   end
 
+  def done_items
+    @items.select(&:done?)
+  end
+
+  def undone_items
+    @items.reject(&:done?)
+  end
+
   def complete_at!(index)
-    @items[index].done = true
+    @items[index].mark_done!
   end
 
   def display
-    puts "Display list: #{name}"
+    puts "## List: #{name} ##"
     @items.each_with_index do |item, index|
       if item.done?
         puts "- [x] #{item.name} (#{index+1})"
@@ -28,11 +34,8 @@ class List
   end
 
   def display_done
-    puts "Displaying DONE items:"
-    @items.each do |item|
-      if item.done?
-        puts "[x] #{item.name}"
-      end
+    done_items.each_with_index do |item, index|
+      puts item.display + " (#{index + 1})"
     end
   end
 end
@@ -44,5 +47,7 @@ end
 # @item5 = Item.new("Learn Class")
 # @item6 = Item.new("Pay tuition", true)
 
-# @today = List.new([@item1, @item2, @item3, @item4, @item5])
+# @today = List.new("Today", [@item1, @item2, @item3, @item4, @item5])
 # @today.add(@item6)
+
+# @today.display

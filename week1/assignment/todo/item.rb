@@ -6,16 +6,25 @@ class Item
     @done = done
   end
 
-  def done
-    @done 
-  end
-
-  def done=(value)
-    @done = value
+  def mark_done!
+    @done = true
   end
 
   def done?
-    @done == true
+    @done
+  end
+
+  def display
+    if done?
+      "- [x] #{item.name}"
+    else
+      "- [ ] #{item.name}"
+    end
+  end
+
+  # Parsing each line into an item. Example: 
+  # Item.new_from_line("- [ ] Learn Ruby") ==> Item.new("Learn Ruby", false)
+  def self.new_from_line(line)
+    new(line[6..-1], line[3] == "x")
   end
 end
-
