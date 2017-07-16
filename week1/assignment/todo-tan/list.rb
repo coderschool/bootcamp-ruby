@@ -18,7 +18,7 @@ class List
   end
 
   def remove_by_name(name)
-
+    @items.delete_if {|item| item.name == name}
   end
 
   def mark_done_at(index)
@@ -29,30 +29,26 @@ class List
     items.index {|item| item.name == name}
   end
 
-  def done
+  def done_items
     @items.select { |item| item.done? }
   end
 
-  def undone
-    @items.select { |item| !item.done? }
+  def undone_items
+    @items.reject { |item| item.done? }
   end
 
 
   def display_done
     puts "Displaying DONE items:"
-    @items.each_with_index do |item, index|
-      if item.done?
+    @done_items.each_with_index do |item, index|
         puts "#{index + 1}. [x] #{item.name}"
-      end
     end
   end
 
   def display_undone
     puts "Displaying UNDONE items:"
-    @items.each_with_index do |item, index|
-      unless item.done?
+    @undone_items.each_with_index do |item, index|
         puts "#{index + 1}. #{item.display}"
-      end
     end 
   end
 

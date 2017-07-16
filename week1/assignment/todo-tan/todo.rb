@@ -1,15 +1,13 @@
 require_relative "list"
 
 class Todo
+    attr_reader :list
+
   def initialize(filename = "todo.md")
     @filename = filename
     @list = List.new("Today")
     @trash_list = List.new("Trash")
     @last_request = {}
-  end
-
-  def list
-    @list
   end
 
   def load_data
@@ -20,8 +18,8 @@ class Todo
     end
   end
 
-  def save(filename = "todo.md")
-    File.write(filename, @list.to_string)
+  def save
+    File.write(@filename, @list.to_string)
   end
 
   def add(name)
@@ -31,16 +29,16 @@ class Todo
   end
 
   def help
-    puts "Here are commands that you can do:"
-    puts "   1. \"all\" show all the todo items"
-    puts "   2. \"show done\" show all done items"
-    puts "   3. \"show undone\" show all undone items"
-    puts "   4. \"+ buy milk\" will add an item named \"buy milk\""
-    puts "   5. \" done 2\" will mark the 2nd item as done"
-    puts "   6. \"remove 2\" will remove the 2nd item in the list"
-    puts "   6. \"save\" will save the todo list to file"
-    puts "   7. \"show trash\" will show deleted tasks"  
-    puts "   8. \"exit\" to exit."
+    puts %{ Here are commands that you can do:
+       1. \"all\" show all the todo items
+       2. \"show done\" show all done items
+       3. \"show undone\" show all undone items
+       4. \"+ buy milk\" will add an item named \"buy milk\"
+       5. \" done 2\" will mark the 2nd item as done
+       6. \"remove 2\" will remove the 2nd item in the list
+       6. \"save\" will save the todo list to file
+       7. \"show trash\" will show deleted tasks
+       8. \"exit\" to exit.}
   end
 
   def mark_done_at(index)
@@ -57,8 +55,9 @@ class Todo
   end
 
   def undo_remove
-    @list.add(@last_request[:item])
-    @trash_list.remove_at(@trash_list.items.index{|item| item.name == @last_request[:item].name})
+    last_item = @last_request[:item]
+    @list.add(last_item)
+    @trash_list.remove_by_name(last_item.name)
     @last_request = {}
     seperate("Undo remove action!")
   end
@@ -93,11 +92,11 @@ class Todo
   end
 
   def prompt
-      seperate("Tan's Todo app")
-      puts "Hi grandma! what do you want me to do?"
-      user_input = gets.chomp
-      handle_user_request(user_input)
-      user_input
+    seperate("Tan's Todo app")
+    puts "Hi grandma! what do you want me to do?"
+    user_input = gets.chomp
+    handle_user_request(user_input)
+    user_input
   end
 
   def seperate(title)
