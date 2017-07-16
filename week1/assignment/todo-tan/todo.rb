@@ -67,6 +67,7 @@ class Todo
     index_to_remove = @list.items.index{|item| item.name == @last_request[:item_name]}
     @list.remove_at(index_to_remove)
     seperate("Undo add action!")
+    @last_request = {}
   end
 
   def undo
@@ -130,7 +131,7 @@ class Todo
     when request == 'undo'
       undo
     when request[0..3] == "done"
-      mark_done_at(request[4..-1].to_i)
+      mark_done_at(request[4..-1].to_i - 1)
     when request == "show trash"
       @trash_list.display
     else
@@ -150,16 +151,16 @@ aliases = {
 
 if ARGV.empty?
   puts "Command list: "
-  puts "all - show all todo items"
-  puts "done - show all done items"
-  puts "add \"Love command line\" - add a new command line item"
+  puts "all or a - show all todo items"
+  puts "done or d- show all done items"
+  puts "add \"Love command line\" or + \"love command line\" - add a new command line item"
 else
   command = aliases[ARGV[0]] || ARGV[0]
   case command
   when 'all'
-    @todo.show_all
+    @todo.list.display
   when 'done'
-    @todo.show_done
+    @todo.list.display_done
   when 'add'
     @todo.add(ARGV[1]) unless ARGV[1].nil?
     @todo.save
