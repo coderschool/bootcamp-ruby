@@ -10,8 +10,16 @@ class Item
     @done = true
   end
 
+  def toggle!
+    @done = !@done
+  end
+
   def done?
     @done
+  end
+
+  def status
+    done? ? "x" : " "
   end
 
   def display

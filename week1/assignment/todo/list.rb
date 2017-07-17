@@ -1,4 +1,6 @@
-class List 
+require 'terminal-table'
+
+class List
   attr_accessor :items, :name
 
   def initialize(name, items = [])
@@ -22,15 +24,27 @@ class List
     @items[index].mark_done!
   end
 
+  def toggle_at!(index)
+    @items[index].toggle!
+  end
+
+  def remove_at!(index)
+    @items.delete_at(index)
+  end
+
   def display
     puts "## List: #{name} ##"
     @items.each_with_index do |item, index|
       if item.done?
-        puts "- [x] #{item.name} (#{index+1})"
+        puts "- [x] #{item.name} (#{index + 1})"
       else
-        puts "- [ ] #{item.name} (#{index+1})"
+        puts "- [ ] #{item.name} (#{index + 1})"
       end
     end
+  end
+
+  def display_as_table
+    puts List.to_table(items)
   end
 
   def display_done
@@ -38,8 +52,13 @@ class List
       puts item.display + " (#{index + 1})"
     end
   end
+
+  def self.to_table(items_array)
+    Terminal::Table.new rows: items_array.map.with_index { |e, idx| [e.status, e.name, idx + 1] }
+  end
 end
 
+# require_relative "item"
 # @item1 = Item.new("Learn Numbers")
 # @item2 = Item.new("Learn Strings")
 # @item3 = Item.new("Learn Variables")

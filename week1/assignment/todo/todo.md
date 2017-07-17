@@ -1,7 +1,7 @@
 - [ ] Learn Numbers
 - [x] Learn Strings
 - [x] Learn Variables
-- [x] Learn Hash
-- [ ] Learn Methods
-- [ ] Learn Class
-- [x] Learn File Reading
+Learn Hash
+Learn Methods
+Learn Class
+Learn File Reading
