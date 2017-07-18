@@ -1,10 +1,10 @@
 - [x] Learn Numbers
-- [ ] Learn Strings
+- [x] Learn Strings
 - [x] Learn Variables
 - [ ] Learn Hash
-- [x] Learn Methods
-- [x] Learn Class
-- [x] Learn File Reading
-- [ ] Learn Sinatra
+- [ ] Learn Methods
+- [ ] Learn Class
+- [ ] Learn File Reading
+- [x] Learn Sinatra
 - [ ] Finish Current Lab
-- [ ] Learn HTML
+- [x] Learn HTML

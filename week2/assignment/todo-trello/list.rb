@@ -3,8 +3,9 @@ require_relative "item"
 class List
   attr_reader :lines, :items
   
-  def initialize(filename = "todo.md")
+  def initialize(filename = "todo.md", sort = nil)
     @filename = filename
+    @sort = sort
     @lines = File.read(filename).split("\n")
     @items = @lines.map {|line| Item.new_from_line(line)}
   end
@@ -49,6 +50,15 @@ class List
   end
 
   def sorted_items
-    items.sort_by {|e| e.done? ? 1 : 0}
+    case @sort
+    when "asc"
+      items.sort_by(&:name)
+    when "desc"
+      items.sort_by(&:name).reverse
+    when "done"
+      items.sort_by {|e| e.done? ? 1 : 0}
+    else
+      items
+    end
   end
 end
