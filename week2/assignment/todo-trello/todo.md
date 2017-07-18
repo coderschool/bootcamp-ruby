@@ -1,8 +1,8 @@
-- [x] Learn Numbers
-- [x] Learn Strings
-- [x] Learn Variables
-- [ ] Learn Hash
-- [ ] Learn Methods
+- [ ] Learn Numbers
+- [ ] Learn Strings
+- [ ] Learn Variables
+- [x] Learn Hash
+- [x] Learn Methods
 - [ ] Learn Class
 - [ ] Learn File Reading
 - [x] Learn Sinatra
