@@ -1,0 +1,17 @@
+#header {
+  background-color: #026aa7;
+  padding: 10px;
+  color: #efefef;
+}
+
+#header a {
+  color: #efefef;
+  text-decoration: none;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 26px;
+}
+
+#header img {
+  width: 20px;
+}

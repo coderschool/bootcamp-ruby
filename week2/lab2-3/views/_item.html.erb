@@ -1,0 +1,10 @@
+<div class="list-item">
+  <button style="float:right; margin-top: -5px">
+    <% if item[:done] %>
+      Do it!
+    <% else %>
+     Undo
+    <% end %>
+  </button>
+  <%= item[:name] %>
+</div>
