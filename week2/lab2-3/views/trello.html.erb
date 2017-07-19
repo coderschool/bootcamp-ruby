@@ -1,0 +1,8 @@
+<h1 id="heading">Test</h1> 
+<div class="list-box">
+  <div style="font-weight: bold; margin-left: 5px">Today</div>
+  <% items.each do |item| %>
+    <%= erb :"_item.html", locals: {item: item} %>
+  <% end %>
+  <input class="add-item" type="text" placeholder="Add an item..." />
+</div>
