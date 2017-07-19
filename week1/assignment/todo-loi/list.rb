@@ -12,19 +12,13 @@ class List
   end
 
   def undone_items
-    temp = []
-    @items.each do |item|
-      if item.undone?
-        temp << item
-      end
-    end
-    temp
+    @items.select(&:undone)
   end
 
   def all
     puts "Todo List:".colorize(:green)
     puts ("-" * 75).colorize(:green)
-    @items.each_with_index { |e, idx| puts (idx+1).to_s + ". " + e.line + "\n"}
+    @items.each_with_index { |e, idx| puts (idx+1).to_s + ". " + e.line}
   end
 
   def add

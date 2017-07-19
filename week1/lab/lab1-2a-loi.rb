@@ -122,9 +122,7 @@ puts "\nMilestone C.4: Define names_only method:"
 puts "-". * 75
 
 def names_only(tasks)
-  tasks.map do |task|
-    task[:task]
-  end
+  tasks.map {|task| task[:task]}
 end
 
 puts names_only(@my_tasks)
@@ -191,7 +189,7 @@ puts "-". * 75
 def symbolist(tasks)
   array = []
   tasks.each do |task|
-    array << task[:task]
+    array << symbolize(task)
   end
 
   array 

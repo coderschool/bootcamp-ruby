@@ -4,14 +4,14 @@ require 'colorize'
 
 class Todo
   attr_accessor :list
+
   def initialize(file_name = "todo.data")
     puts ("-" * 75).colorize(:green)
     puts "Welcome to the Ruby Todo List App!".colorize(:green)
     puts "If you'd like to see a list of available comments, type in \n" + "-h".colorize(:light_red) +  " or " + "help".colorize(:light_red) +  " to " + "view the help menu.\n\n".colorize(:light_red)
-    file = File.open(file_name)
-    data = file.read
+    data = File.read(file_name)
     items = []
-    data.lines.each do |line|
+    data.split("\n").each do |line|
       items << Item.new(line)
     end
     @list = List.new(items)
@@ -95,6 +95,7 @@ class Todo
 
 
   def save
+    # @list.items.map{...}.join("\n") and then f.puts a single 
     open('todo.data', 'w') { |f|
     @list.items.each do |item|
       f.puts item.current_status + " " + item.title

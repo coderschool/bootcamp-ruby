@@ -3,7 +3,7 @@ require 'colorize'
 class Item
   attr_accessor :item
   def initialize(line)
-    @line = line.chomp
+    @line = line
   end
 
   def title
