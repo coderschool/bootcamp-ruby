@@ -1,0 +1,19 @@
+<% items.each_with_index do |i, idx| %>
+      <h4 class="card-title"><%= i[:name] %></h4>
+      <p class="card-text">Task <%= idx + 1 %>: </p>  
+      <% if i[:done] %>
+      <form method="POST" action="/undone">
+        <input type="hidden" name="name" value="<%= i[:name] %>" >
+        <input type="hidden" name="done" value="<%= i[:done] %>">
+        <input type="hidden" name="priority" value="<%= i[:priority] %>">
+        <input type="submit" value="Undone">
+      </form>    
+      <% else %>    
+      <form method="POST" action="/done">
+        <input type="hidden" name="name" value="<%= i[:name] %>" >
+        <input type="hidden" name="done" value="<%= i[:done] %>">
+        <input type="hidden" name="priority" value="<%= i[:priority] %>">
+        <input type="submit" value="Done">
+      </form>        
+      <% end  %>
+<% end%>
