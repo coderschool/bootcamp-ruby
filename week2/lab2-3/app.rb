@@ -6,7 +6,7 @@ get "/" do
 end
 
 get "/about" do
-  erb :"home/about.html", locals: {name: "CoderSchool"}, layout: :"layout.html"
+  erb :"about.html", locals: {name: "CoderSchool"}, layout: :"layout.html"
 end
 
 get "/trello" do
