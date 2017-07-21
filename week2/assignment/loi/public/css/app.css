@@ -1,0 +1,28 @@
+body {
+  background-color: #A9E4EF;
+}
+
+.done {
+  background-color: #d9fcd1 !important;
+}
+
+.sublist {
+  text-decoration: none;
+  border: solid 2px grey;
+  padding: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  box-shadow: 1px 1px 1px #888888;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.card {
+  background-color: #eaf0f9;
+  box-shadow: 1px 1px 1px #888888;  
+  margin-bottom: 15px;
+}
+
+.btn-done {
+  background-color: #d9fcd1;
+}

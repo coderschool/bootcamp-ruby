@@ -5,15 +5,19 @@ Tilt.register Tilt::ERBTemplate, 'html.erb'
 
 set :public_folder, Proc.new { File.join(root, "public") }
 
-@@items = [
-  {name: "Attend lectures", done: true, priority: 1},
-  {name: "Do labs", done: true, priority: 2},
-  {name: "Build stuff", done: false, priority: 3}
-]  
 get '/' do
-  name = "Loi"
-  p @@items
-  erb :index, locals: {items: @@items}
+  params = params
+  lines = File.read("todo.data").split("\n")
+
+  items = lines.map.with_index do |line, idx|
+    {
+      name: line[4..-1],
+      done: (line[1] == "x") ? "done" : "undone",
+      idx: idx
+    }
+  end
+
+  erb :index, locals: {items: items}
 end
 
 get '/about' do
@@ -26,20 +30,35 @@ get '/trello' do
 end
 
 post '/create' do
-  hash = {name: params[:name], done: params[:done], priority: params[:priority]}
-  p hash
-  @@items << hash
+  File.open("todo.data", 'a') { |f|
+      f.puts "[ ] #{params[:name]}"
+  }
+  
   redirect '/'
 end
 
-post '/done' do
-  item = @@items.find {|i| i[:name] == params[:name]}
-  item[:done] = true
-  redirect '/'
-end
+post '/update-all' do
+  items = params["items"]
+  
+  if params["toggle"]   
+    idx = params["toggle"].to_i    
+    if items[idx]["done"] == "done"
+      items[idx]["done"] = "undone"
+    else
+      items[idx]["done"] = "done"
+    end
+  end
 
-post '/undone' do
-  item = @@items.find {|i| i[:name] == params[:name]}
-  item[:done] = false
-  redirect '/'
+
+  File.open("todo.data", 'w') do |f|
+    items.each do |item|
+      if item["done"] == "done"
+        f << "[x] " + item[:name] + "\n"
+      else
+        f << "[ ] " + item[:name] + "\n"
+      end
+    end
+  end
+
+  redirect back
 end
