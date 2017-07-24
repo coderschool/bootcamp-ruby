@@ -1,40 +1,33 @@
-require 'colorize'
-
 class Item
-  attr_accessor :item
-  def initialize(line)
-    @line = line
+  attr_accessor :name, :done, :idx
+
+  def initialize(name, idx, done = "undone")
+    @name = name
+    @idx = idx
+    @done = done
   end
 
-  def title
-    @line[4..-1]
+  def self.new_from_line(line, idx)
+    name = line[4..-1]
+    status = line[1] == "x" ? "done" : "undone"
+    index = idx
+    
+    Item.new(name, index, status)    
+  end
+
+  def mark_done! 
+    @done = "done"
+  end
+
+  def toggle!
+    if @done == "undone"
+      @done = "done"
+    else
+      @done = "undone"
+    end
   end
 
   def done?
-    @line[0..2] == "[x]"
+    @done == "done"
   end
-
-  def current_status
-    @line[0..2]
-  end
-
-  def undone?
-    !done?
-  end
-
-  def line
-    done? ? @line.colorize(:cyan) : @line.colorize(:light_yellow)
-  end
-
-  def status
-    done?
-  end
-
-  def done!
-    @line = "[x] " + title
-  end
-
-  def undone!
-    @line = "[ ] " + title
-  end  
 end

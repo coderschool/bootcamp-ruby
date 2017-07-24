@@ -19,9 +19,9 @@ class Todo
 
   def seperate(title)
     puts "\n"
-    puts ("-" * 75).colorize(:green)        
+    puts ("-" * 75).colorize(:green)
     puts title.colorize(:green)
-    puts ("-" * 75).colorize(:green)    
+    puts ("-" * 75).colorize(:green)
   end
 
   def display
@@ -35,7 +35,7 @@ class Todo
 
   def input(input)
     input = input.downcase
-    case input 
+    case input
     when "display", "-d"
       display
     when "help", "-h"
@@ -49,14 +49,14 @@ class Todo
     when "unmark", "-um"
       @list.unmark_complete
     when "colors"
-      show_colors      
+      show_colors
     else
       puts "Sorry!".colorize(:light_red) +" I don't understand that command."
       puts "Please try again or enter" + " -h".colorize(:light_red) + " or" + " help".colorize(:light_red) + " for more help"
     end
   end
 
-  def help 
+  def help
     puts "-h ".colorize(:light_red) + "or" + " help:".colorize(:light_red) + " Displays a list of all commands available."
     puts "-d ".colorize(:light_red) + "or" + " display:".colorize(:light_red) +" Displays your todo list with all items."
     puts "-a ".colorize(:light_red) + "or" + " add:".colorize(:light_red) + " Allows you to add new items to your todo list."
@@ -68,34 +68,34 @@ class Todo
   def show_colors
     puts "black".colorize(:black)
     puts "light_black".colorize(:light_black)
-    
+
     puts "red".colorize(:red)
     puts "light_red".colorize(:light_red)
 
     puts "green".colorize(:green)
     puts "light_green".colorize(:light_green)
 
-    puts "yellow".colorize(:yellow)    
+    puts "yellow".colorize(:yellow)
     puts "light_yellow".colorize(:light_yellow)
 
     puts "blue".colorize(:blue)
     puts "light_blue".colorize(:light_blue)
 
-    puts "magenta".colorize(:magenta)    
+    puts "magenta".colorize(:magenta)
     puts "light_magenta".colorize(:light_magenta)
 
-    puts "cyan".colorize(:cyan)    
+    puts "cyan".colorize(:cyan)
     puts "light_cyan".colorize(:light_cyan)
 
-    puts "white".colorize(:white)    
-    puts "light_white".colorize(:light_white)    
+    puts "white".colorize(:white)
+    puts "light_white".colorize(:light_white)
 
-    puts "default".colorize(:default)    
-  end  
+    puts "default".colorize(:default)
+  end
 
 
   def save
-    # @list.items.map{...}.join("\n") and then f.puts a single 
+    # @list.items.map{...}.join("\n") and then f.puts a single
     open('todo.data', 'w') { |f|
     @list.items.each do |item|
       f.puts item.current_status + " " + item.title
@@ -110,12 +110,12 @@ loop do
   @todo.prompt
   input = gets.chomp
   @todo.save
-  if input == "exit" || input == "-e"  
+  if input == "exit" || input == "-e"
     puts "Ok, exiting... See you next time & " + "<3".colorize(:red) + " from " + "CoderSchool\n".colorize(:red)
     break
   end
   @todo.input(input)
-end  
+end
 
 # if ARGV[0] == "done"
 #   puts "Nice!"

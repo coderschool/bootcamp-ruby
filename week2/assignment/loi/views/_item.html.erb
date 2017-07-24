@@ -1,18 +1,17 @@
-
 <form action="update-all" method="post">
 <h1 id="today">Today</h1>
   <ul class="list-group js-sortable">
   <button type="submit" name="save" class="save">Save</button>
-    <% items.each do |i| %>
+    <% @items.each do |i| %>
     <div class="item">
-      <div class="sublist <%= 'done' if i[:done] == "done" %>">
-        <p class="<%= 'done' if i[:done] == "done" %>"><%= i[:name] %></p>
-        <input type="hidden" value="<%= i[:name] %>" name="items[][name]">
-        <input type="hidden" value="<%= i[:done] %>" name="items[][done]">        
-        <% if i[:done] == "done" %>
-          <button type="submit" value="<%= i[:idx] %>" name="toggle" class="btn-done">Undo</button>
+      <div class="sublist <%= 'done' if i.done == "done" %>">
+        <p class="<%= 'done' if i.done == "done" %>"><%= i.name %></p>
+        <input type="hidden" value="<%= i.name %>" name="items[][name]">
+        <input type="hidden" value="<%= i.done %>" name="items[][done]">        
+        <% if i.done == "done" %>
+          <button type="submit" value="<%= i.idx %>" name="toggle" class="btn-done">Undo</button>
         <% else %>
-          <button type="submit" value="<%= i[:idx] %>" name="toggle" class="undone">Done</button>
+          <button type="submit" value="<%= i.idx %>" name="toggle" class="undone">Done</button>
         <% end%>
         </div>
     </div>
