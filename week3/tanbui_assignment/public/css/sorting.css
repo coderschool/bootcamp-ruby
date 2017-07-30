@@ -1,0 +1,6 @@
+.sortable-placeholder {
+  /* you can set the background of your placeholder here */
+  background-color: #999;
+  height: 29px !important;
+  width: 242px; 
+}

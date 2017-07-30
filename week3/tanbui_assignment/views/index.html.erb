@@ -1,0 +1,19 @@
+<h1 id="heading"><%= @title || "Torello" %></h1>
+
+<div class="js-sortable-lists">
+  <% lists.each do |list| %>
+  <%= erb :"shared/_list.html", locals: {list: list} %>
+  <% end %>
+</div>
+
+<div class="list list-add">
+  <form class="list-form is-idle" action="lists" method="post" _lpchecked="1">
+    <div class="add-a-list js-add-list">Add a list...</div>
+    <div class="add-list-inputs">
+      <input type="text" class="list-name-input" name="list-name" autofocus="">
+      <input type="hidden" name="id" value="<%= new_id %>">
+      <button class="primary save">Save</button>
+      <span class="cancel-form js-cancel-form">×</span>
+    </div>
+  </form>
+</div> 
